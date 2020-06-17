@@ -15,10 +15,10 @@ after_success:
   - docker build -t islamgamal88/multi-con-server ./server
   - docker build -t islamgamal88/multi-con-worker ./worker
 
-# login to docker cli
-- echo "$DOCKER_PW" | docker login -u "$DOCKER_ID" --password-stdin
-# push to DH
-- docker push islamgamal88/multi-con-client
-- docker push islamgamal88/multi-con-nginx
-- docker push islamgamal88/multi-con-server
-- docker push islamgamal88/multi-con-worker
+  # login to docker cli
+  - echo "$DOCKER_PW" | docker login -u "$DOCKER_ID" --password-stdin
+  # push to DH
+  - docker push islamgamal88/multi-con-client
+  - docker push islamgamal88/multi-con-nginx
+  - docker push islamgamal88/multi-con-server
+  - docker push islamgamal88/multi-con-worker
