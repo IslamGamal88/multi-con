@@ -1,0 +1,23 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t islamgamal88/multi-con-test -f ./client/Dockerfile ./client
+
+scripts:
+  - docker run islamgamal88/multi-con-test npm test -- --coverage
+
+after_success:
+  - docker build -t islamgamal88/multi-con-client ./client
+  - docker build -t islamgamal88/multi-con-nginx ./nginx
+  - docker build -t islamgamal88/multi-con-server ./server
+  - docker build -t islamgamal88/multi-con-worker ./worker
+
+# login to docker cli
+- echo "$DOCKER_PW" | docker login -u "$DOCKER_ID" --password-stdin
+# push to DH
+- docker push islamgamal88/multi-con-client
+- docker push islamgamal88/multi-con-nginx
+- docker push islamgamal88/multi-con-server
+- docker push islamgamal88/multi-con-worker
