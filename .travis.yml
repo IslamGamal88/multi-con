@@ -5,8 +5,8 @@ services:
 before_install:
   - docker build -t islamgamal88/multi-con-test -f ./client/Dockerfile ./client
 
-scripts:
-  - docker run islamgamal88/multi-con-test npm test -- --coverage
+script:
+  - docker run -e CI=true islamgamal88/multi-con-test npm test -- --coverage
 
 after_success:
   - docker build -t islamgamal88/multi-con-client ./client
